@@ -1,0 +1,25 @@
+"""
+Ejercicio 1
+Realizar un programa que conste de una clase llamada Alumno que tenga como atributos el nombre y la nota
+del alumno. Definir los métodos para inicializar sus atributos, imprimirlos y mostrar un mensaje con el
+resultado de la nota y si ha aprobado o no.
+"""
+class Alumno:
+    def inicializar(self,nom): #inicio el atributo nombre
+        self.nombre=nom
+        
+    def calificacion(self,calif): #inicion el atributo nota
+        self.nota= int(calif)
+        
+    def mostrar(self):
+        print("Nombre: ",self.nombre) 
+        print("Nota: ",self.nota) 
+        if self.nota >=7:
+            print(f"{self.nombre} esta aprobado")  
+        else:
+            print(f"{self.nombre} esta desaprobado")
+
+alumno1=Alumno()
+alumno1.inicializar("Pepe")
+alumno1.calificacion(8)
+alumno1.mostrar()

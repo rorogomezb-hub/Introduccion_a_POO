@@ -1,0 +1,73 @@
+"""
+Ejercicio 12: AVENTURA Y OBJETOS
+Un aventurero recorre distintos escenarios recolectando objetos que encuentra en su camino. El usuario podrá
+decidir qué hacer con cada objeto: guardarlo, utilizarlo o descartarlo. Además, deberá poder consultar en todo
+momento qué elementos posee.
+El programa debe permitir gestionar esta información de forma dinámica durante la ejecución.
+"""
+
+import random
+class Aventurero:
+    def __init__(self):
+        self.inventario = []
+
+    def guardar(self, objeto):
+        self.inventario.append(objeto)
+        print(f"Guardaste {objeto}")
+
+    def usar(self, objeto):
+        if objeto in self.inventario:
+            print(f"Usaste {objeto}")
+            self.inventario.remove(objeto)
+        else:
+            print("No tienes ese objeto")
+
+    def descartar(self, objeto):
+        if objeto in self.inventario:
+            self.inventario.remove(objeto)
+            print(f"Descartaste {objeto}")
+        else:
+            print("No tienes ese objeto")
+
+    def mostrar(self):
+        if len(self.inventario) > 0:
+            print("\nInventario:")
+            for obj in self.inventario:
+                print(f"- {obj}")
+        else:
+            print("\nTu inventario está vacío")
+
+aventurero = Aventurero()
+objetos_posibles = ["espada", "poción", "escudo", "oro", "mapa"]
+seguir = True
+while seguir:
+    objeto_encontrado = random.choice(objetos_posibles)
+    print("\nEncontraste un objeto:", objeto_encontrado)
+
+    print("\n¿Qué quieres hacer?")
+    print("1- Guardar")
+    print("2- Usar")
+    print("3- Descartar")
+    print("4- Ver inventario")
+    print("5- Salir")
+
+    op = int(input("Ingrese: "))
+
+    if op == 1:
+        aventurero.guardar(objeto_encontrado)
+
+    elif op == 2:
+        aventurero.usar(objeto_encontrado)
+
+    elif op == 3:
+        aventurero.descartar(objeto_encontrado)
+
+    elif op == 4:
+        aventurero.mostrar()
+
+    elif op == 5:
+        seguir = False
+        print("Fin de la aventura")
+
+    else:
+        print("Opción inválida")

@@ -1,0 +1,25 @@
+"""
+Ejercicio 2
+Realizar un programa que tenga una clase Persona con las siguientes características. La clase tendrá como
+atributos el nombre y la edad de una persona. Implementar los métodos necesarios para inicializar los
+atributos, mostrar los datos e indicar si la persona es mayor de edad o no.
+"""
+class Persona():
+    def inicializar(self,nom):
+        self.nombre=nom
+    
+    def edad(self,ed):
+        self.Edad=int(ed)
+        
+    def mostrar(self):
+        print("Nombre: ",self.nombre)
+        print("Edad: ",self.Edad)
+        if self.Edad >=18:
+            print(f"{self.nombre} es mayor de edad")
+        else:
+            print(f"{self.nombre} es menor de edad")
+            
+persona1=Persona()
+persona1.inicializar("Pepita")
+persona1.edad(67)
+persona1.mostrar()

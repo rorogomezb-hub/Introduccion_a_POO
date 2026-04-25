@@ -1,0 +1,56 @@
+"""
+Ejercicio 3
+Desarrollar un programa que cargue los datos de un triángulo. Implementar una clase con los métodos para
+inicializar los atributos, imprimir el valor del lado con un tamaño mayor y el tipo de triángulo que es
+(equilátero, isósceles o escaleno).
+"""
+class Triangulo():
+    def Lateral1(self,L1):
+        self.lado1=L1
+    def Lateral2(self,L2):
+        self.lado2=L2
+    def Lateral3(self,L3):
+        self.lado3=L3
+        
+    def mostrar(self):
+        if self.lado1>=self.lado2:
+            Mayor=self.lado1
+            medio=self.lado2
+        else:
+            Mayor=self.lado2
+            medio=self.lado1
+        if self.lado3>=Mayor:
+            menor=medio
+            medio=Mayor
+            Mayor=self.lado3
+        elif self.lado3>=medio:
+            menor=medio
+            medio=self.lado3
+        else:
+            menor=self.lado3
+            
+        print(f"El lado mayor es {Mayor}")
+        print(f"El lado medio es {medio}")
+        print(f"El lado menor es {menor}")
+        
+        ## clasifico los triangulos
+        
+        if self.lado1!=self.lado2!=self.lado3:
+            triangulo= "Escaleno"
+        elif self.lado1==self.lado2==self.lado3:
+            triangulo= "Equilatero"
+        elif self.lado1==self.lado2:
+            triangulo= "Isoseles"
+        elif self.lado1==self.lado3:
+            triangulo= "Isoseles"
+        elif self.lado2==self.lado3:
+            triangulo= "Isoseles"
+        
+        print(f"El triangulo es {triangulo}")
+        
+triangulo=Triangulo()
+triangulo.Lateral1(int(input("Ingrese el lado 1: ")))
+triangulo.Lateral2(int(input("Ingrese el lado 2: ")))
+triangulo.Lateral3(int(input("Ingrese el lado 3: ")))
+
+triangulo.mostrar()

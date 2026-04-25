@@ -1,0 +1,57 @@
+"""
+Ejercicio 14: ÚLTIMA DEFENSA
+Una torre protege un territorio de ataques constantes. El usuario podrá decidir cómo actuar frente a cada
+situación. A medida que transcurre el tiempo, la torre recibe daños que afectan su estado. El sistema debe
+permitir observar su condición en cada momento.
+El juego finaliza cuando la torre ya no puede resistir más ataques.
+"""
+
+import random
+class Torre:
+    def __init__(self):
+        self.vida = 20
+
+    def recibir_ataque(self):
+        danio = random.randint(1,3)
+        self.vida -= danio
+        print(f"La torre recibió {danio} de daño")
+
+    def reparar(self):
+        self.vida += 2
+        print("Reparaste la torre")
+
+    def reforzar(self):
+        self.vida += 1
+        print("Reforzaste la torre")
+
+
+torre = Torre()
+
+while torre.vida > 0:
+    print("\n--- ESTADO DE LA TORRE ---")
+    print(f"Vida actual: {torre.vida}")
+
+    print("\n¿Qué deseas hacer?")
+    print("1- Reparar torre")
+    print("2- Reforzar torre")
+    print("3- No hacer nada")
+
+    op = int(input("Ingrese: "))
+
+    if op == 1:
+        torre.reparar()
+    elif op == 2:
+        torre.reforzar()
+    elif op == 3:
+        print("No hiciste nada este turno")
+    else:
+        print("Opción inválida")
+
+    
+    if torre.vida > 0:
+        torre.recibir_ataque()
+
+    print(f"Vida restante: {torre.vida}")
+
+
+print("\nLa torre ha sido destruida. GAME OVER.")

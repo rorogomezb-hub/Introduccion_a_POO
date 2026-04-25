@@ -1,0 +1,77 @@
+"""
+Ejercicio 10: GRAN CARRERA
+Se está llevando a cabo una carrera entre varios autos. Uno de ellos será controlado por el usuario, quien podrá
+decidir cómo actuar en cada turno.
+Cada acción influirá en el desempeño del vehículo, afectando su avance en la pista. Mientras tanto, los demás
+competidores avanzarán automáticamente. El programa debe permitir observar la evolución de la carrera y
+determinar el resultado final.
+"""
+
+import random
+
+class Auto:
+    def __init__(self,nombre):
+        self.nombre= nombre
+        self.progreso=0
+    
+    def acelerar(self):
+        self.acelera= random.randint(5,10) #utilizo random para que cuando el auto acelere, no se pueda descrifrar cuanto va a acelerar
+        self.progreso+=self.acelera
+        return self.acelera
+    
+    def turbo(self):
+        self.rapidisimo= random.randint(10,30)
+        self.progreso+=self.rapidisimo
+        return self.rapidisimo
+    
+#_________________________________________________________________________   
+
+distancia=200
+print("\n-----------------------------------------------------------")
+cant_jugadores=int(input("ingrese la cantidad de jugadores: "))
+usuario=Auto(input("ingresa tu nombre: "))
+
+rivales=[]
+for i in range (cant_jugadores-1):
+    rival=Auto(f"rival{i+1}")
+    rivales.append(rival)
+
+
+carrera=True
+while carrera:
+
+    print("\n-----------------------------------------------------------")
+    print("¿Que quieres hacer?")
+    print("1- Acelerar")
+    print("2- Turboo")
+
+    op=int(input("Ingresa: "))
+    print("\n-----------------------------------------------------------")
+
+    if op==1:
+        usuario.acelerar()
+        print(f"\nTu progreso es de {usuario.progreso}/{distancia}")
+    elif op==2:
+        usuario.turbo()
+        print(f"\nTu progreso es de {usuario.progreso}/{distancia}")
+    
+    if usuario.progreso >= distancia:
+        print(f"\n¡FELICIDADES {usuario.nombre}! Has ganado la carrera.")
+        carrera = False
+    else:
+        for i in rivales:
+            i.acelerar()
+            print(f"El progreso de {i.nombre} es de {i.progreso}/{distancia}")
+                
+            if i.progreso >= distancia:
+                print(f"\nEl {i.nombre} ha ganado! Suerte la próxima.")
+                carrera = False
+
+print("GAME OVER")
+
+
+    
+
+    
+
+

@@ -1,0 +1,76 @@
+"""
+Ejercicio 13: DESAFÍO DE DADOS
+En un juego de azar participan varios jugadores. Uno de ellos será controlado por el usuario. En cada ronda,
+el usuario podrá lanzar un dado para obtener un valor que se acumulará en su puntaje total. Los demás
+jugadores también participarán automáticamente.
+Al finalizar varias rondas, se deberá determinar el resultado del juego.
+"""
+
+import random
+
+class Jugador:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.puntaje = 0
+
+    def lanzar_dado(self):
+        dado = random.randint(1,6)
+        self.puntaje += dado
+        return dado
+
+cantidad = int(input("Ingrese la cantidad de jugadores: "))
+jugadores = []
+
+for i in range(cantidad):
+    if i == 0:
+        nombre = "Tú"
+    else:
+        nombre = f"Jugador {i}"
+    jugadores.append(Jugador(nombre))
+
+rondas = int(input("Ingrese la cantidad de rondas: "))
+ronda_actual = 1
+
+while ronda_actual <= rondas:
+    print(f"\n--- RONDA {ronda_actual} ---")
+
+    for j in jugadores:
+        if j.nombre == "Tú":
+            print("\nEs tu turno:")
+            input("Presiona ENTER para lanzar el dado ") #esto como qeu "pausa" el programa hasta que se ingrese el enter
+            dado = j.lanzar_dado()
+            print(f"Sacaste un {dado}")
+            print(f"Tu puntaje total es {j.puntaje}")
+        else:
+            dado = j.lanzar_dado()
+            print(f"\n{j.nombre} sacó un {dado}")
+
+    print("\nPUNTAJES:")
+    for j in jugadores:
+        print(f"{j.nombre}: {j.puntaje}")
+
+    ronda_actual += 1
+
+print("\n--- RESULTADO FINAL ---")
+for j in jugadores:
+    print(f"{j.nombre}: {j.puntaje}")
+
+#---------------------------------------
+mayor = jugadores[0] #esto para saber quien ganó
+for j in jugadores:
+    if j.puntaje > mayor.puntaje:
+        mayor = j
+
+
+empate = False
+for j in jugadores:
+    if j != mayor and j.puntaje == mayor.puntaje:
+        empate = True
+
+if empate:
+    print("¡EMPATE!")
+else:
+    if mayor.nombre == "Tú":
+        print("¡GANASTE!")
+    else:
+        print(f"Ganó {mayor.nombre}")

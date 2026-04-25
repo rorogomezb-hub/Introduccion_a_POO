@@ -1,0 +1,88 @@
+"""
+Ejercicio 5
+Realizar una clase que administre una agenda. se debe almacenar para cada contacto el nombre, el telèfono
+y el email. ademàs debera mostrar un menù con las siguientes opciones:
+    •Añadir contacto
+    •Lista de contactos
+    •Buscar contacto
+    •Editar contacto
+    •Cerrar agenda
+"""
+
+class Agenda:
+    def __init__(self):
+        self.contactos = []
+
+    def añadir(self):
+        nombre = input("Nombre: ")
+        telefono = input("Teléfono: ")
+        email = input("Email: ")
+
+        contacto = {
+            "nombre": nombre,
+            "telefono": telefono,
+            "email": email
+        }
+
+        self.contactos.append(contacto)
+        print("Contacto añadido")
+
+    def listar(self):
+        if len(self.contactos) == 0:
+            print("No hay contactos")
+        else:
+            print("\nLISTA DE CONTACTOS:")
+            for c in self.contactos:
+                print(f"{c['nombre']} - {c['telefono']} - {c['email']}")
+
+    def buscar(self):
+        nombre = input("Ingrese el nombre a buscar: ")
+
+        for c in self.contactos:
+            if c["nombre"] == nombre:
+                print(f"{c['nombre']} - {c['telefono']} - {c['email']}")
+                return
+        
+        print("Contacto no encontrado")
+
+    def editar(self):
+        nombre = input("Ingrese el nombre del contacto a editar: ")
+
+        for c in self.contactos:
+            if c["nombre"] == nombre:
+                print("Ingrese los nuevos datos:")
+                c["telefono"] = input("Nuevo teléfono: ")
+                c["email"] = input("Nuevo email: ")
+                print("Contacto actualizado")
+                return
+        
+        print("Contacto no encontrado")
+
+
+agenda = Agenda()
+
+seguir = True
+
+while seguir:
+    print("\n--- AGENDA ---")
+    print("1- Añadir contacto")
+    print("2- Lista de contactos")
+    print("3- Buscar contacto")
+    print("4- Editar contacto")
+    print("5- Cerrar agenda")
+
+    op = int(input("Ingrese: "))
+
+    if op == 1:
+        agenda.añadir()
+    elif op == 2:
+        agenda.listar()
+    elif op == 3:
+        agenda.buscar()
+    elif op == 4:
+        agenda.editar()
+    elif op == 5:
+        seguir = False
+        print("Agenda cerrada")
+    else:
+        print("Opción inválida")

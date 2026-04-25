@@ -1,0 +1,47 @@
+"""
+Ejercicio 9: EL TESORO ESCONDIDO
+Un explorador se adentra en una cueva en busca de tesoros. En su camino encuentra cofres que pueden estar
+cerrados o abiertos, y que contienen cierta cantidad de monedas.
+El usuario deberá decidir qué hacer en cada momento: intentar abrir cofres, recolectar monedas o continuar
+explorando.
+El sistema debe permitir visualizar el estado del cofre y la cantidad de recursos acumulados por el jugador
+hasta finalizar la exploración.
+"""
+
+import random
+
+class Cofre:
+    def __init__(self):
+        self.abierto=random.choice([True, False])
+        self.monedas=random.randint(5,100)
+
+    def mostrarEstadoCofre(self):
+        if self.abierto:
+            print("\nEl cofre esta ABIERTO")
+            print(f"Hay {self.monedas} monedas")
+        else:
+            print("\nEl cofre esta CERRADO")
+
+class Explorador:
+    def __init__(self):
+        self.recoleccion=0
+
+    def recolectar(self):
+        if cofre_actual.abierto:
+            if cofre_actual.monedas > 0:
+                print(f"Recogiste {cofre_actual.monedas} monedas")
+                self.recoleccion += cofre_actual.monedas
+                cofre_actual.monedas = 0  # Vaciamos el cofre
+            else:
+                print("El cofre está vacío")
+        else:
+            print("No puedes sacar nada. El cofre está cerrado")
+
+jugador=Explorador()
+
+exploracion=True
+while exploracion:
+    cofre_actual=Cofre()
+    print(f"Hay un cofre {cofre_actual.mostrarEstadoCofre()}")
+
+    
