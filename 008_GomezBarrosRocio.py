@@ -1,5 +1,12 @@
 """
-EJERCICIO 8: 
+EJERCICIO 8: DUELO EN LA ARENA
+En una arena de combate se enfrentan dos personajes: uno controlado por el usuario y otro controlado por el
+sistema.
+Cada personaje posee ciertas características que determinan su capacidad de resistir ataques y de causar daño.
+Durante el combate, el usuario puede decidir qué acción realizar en su turno, mientras que el oponente
+responde automáticamente.
+A medida que transcurre el enfrentamiento, se debe poder observar el estado de cada participante. El combate
+finaliza cuando uno de los personajes ya no puede continuar.
 """
 
 import random
